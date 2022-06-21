@@ -132,7 +132,7 @@ const BoardModal = () => {
                 className='h-full w-full'
                 type='text'
                 label='Link'
-                {...register('company', {
+                {...register('link', {
                   required: false,
                 })}
                 placeholder='https://careers.google.com/'

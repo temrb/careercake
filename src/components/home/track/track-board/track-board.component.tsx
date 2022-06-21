@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  PlusSmIcon,
-} from '@heroicons/react/solid';
+import { PlusSmIcon } from '@heroicons/react/solid';
 import Modal from '@mui/material/Modal';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
 import { setModal } from '../../../../redux/features/utilsSlice';
 import BoardModal from './board-modal.component';
+import Category from './category.component';
 
 interface RootState {
   utils: any;
@@ -48,108 +45,58 @@ const TrackBoard = () => {
         <>{<BoardModal />}</>
       </Modal>
 
-      {/* board */}
+      {/* category board */}
       <div className='pt-6 px-6 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-4'>
-        <div className=''>
-          <button
-            className='flex justify-between font-semibold py-3 bg-gray-300/50 shadow-md px-3 items-center rounded-lg w-full'
-            onClick={() => setWishlistOpen(!wishlistOpen)}
-          >
-            <span className='flex justify-start items-center'>Wishlist</span>
-            <span className='flex justify-end items-center gap-2'>
-              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
-                {wishlistOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              </span>
-            </span>
-          </button>
-          {wishlistOpen && (
-            <div className='mt-4 flex flex-col space-y-4 border-gray-400/50 border-4 rounded-lg border-dashed p-4'>
-              <span className='font-light text-xs flex justify-end'>
-                ({wishlistContent.length}) items
-              </span>
-            </div>
-          )}
-        </div>
-        <div className=''>
-          <button
-            className='flex justify-between font-semibold py-3 bg-orange-300 shadow-md px-3 items-center rounded-lg w-full'
-            onClick={() => setAppliedOpen(!appliedOpen)}
-          >
-            <span className='flex justify-start items-center'>Applied</span>
-            <span className='flex justify-end items-center gap-1'>
-              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
-                {appliedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              </span>
-            </span>
-          </button>
-          {appliedOpen && (
-            <div className='mt-4 flex flex-col space-y-4 border-orange-400/50 border-4 rounded-lg border-dashed p-4'>
-              <span className='font-light text-xs flex justify-end'>
-                ({appliedContent.length}) items
-              </span>
-            </div>
-          )}
-        </div>
-        <div className=''>
-          <button
-            className='flex justify-between font-semibold py-3 bg-blue-300 shadow-md px-3 items-center rounded-lg w-full'
-            onClick={() => setInterviewOpen(!interviewOpen)}
-          >
-            <span className='flex justify-start items-center'>Interview</span>
-            <span className='flex justify-end items-center gap-2'>
-              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
-                {interviewOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              </span>
-            </span>
-          </button>
-          {interviewOpen && (
-            <div className='mt-4 flex flex-col space-y-4 border-blue-400/50 border-4 rounded-lg border-dashed p-4'>
-              <span className='font-light text-xs flex justify-end '>
-                ({interviewContent.length}) items
-              </span>
-            </div>
-          )}
-        </div>
-        <div className=''>
-          <button
-            className='flex justify-between font-semibold py-3 bg-green-300 shadow-md px-3 items-center rounded-lg w-full'
-            onClick={() => setOfferOpen(!offerOpen)}
-          >
-            <span className='flex justify-start items-center'>Offer</span>
-            <span className='flex justify-end items-center gap-2'>
-              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
-                {offerOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              </span>
-            </span>
-          </button>
-          {offerOpen && (
-            <div className='mt-4 flex flex-col space-y-4 border-green-400/50 border-4 rounded-lg border-dashed p-4'>
-              <span className='font-light text-xs flex justify-end'>
-                ({offerContent.length}) items
-              </span>
-            </div>
-          )}
-        </div>
-        <div className=''>
-          <button
-            className='flex justify-between font-semibold py-3 bg-red-300 shadow-md px-3 items-center rounded-lg w-full'
-            onClick={() => setRejectedOpen(!rejectedOpen)}
-          >
-            <span className='flex justify-start items-center'>Rejected</span>
-            <span className='flex justify-end items-center gap-2'>
-              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
-                {rejectedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-              </span>
-            </span>
-          </button>
-          {rejectedOpen && (
-            <div className='mt-4 flex flex-col space-y-4 border-red-400/50 border-4 rounded-lg border-dashed p-4'>
-              <span className='font-light text-xs flex justify-end'>
-                ({rejectedContent.length}) items
-              </span>
-            </div>
-          )}
-        </div>
+        <Category
+          title='Wishlist'
+          backgroundColor='gray'
+          borderColor='gray'
+          setCategoryOpen={setWishlistOpen}
+          categoryOpen={wishlistOpen}
+          categoryContent={wishlistContent}
+        >
+          asdf
+        </Category>
+        <Category
+          title='Applied'
+          backgroundColor='orange'
+          borderColor='orange'
+          setCategoryOpen={setAppliedOpen}
+          categoryOpen={appliedOpen}
+          categoryContent={appliedContent}
+        >
+          asdf
+        </Category>
+        <Category
+          title='Interview'
+          backgroundColor='blue'
+          borderColor='blue'
+          setCategoryOpen={setInterviewOpen}
+          categoryOpen={interviewOpen}
+          categoryContent={interviewContent}
+        >
+          asdf
+        </Category>
+        <Category
+          title='Offer'
+          backgroundColor='green'
+          borderColor='green'
+          setCategoryOpen={setOfferOpen}
+          categoryOpen={offerOpen}
+          categoryContent={offerContent}
+        >
+          asdf
+        </Category>
+        <Category
+          title='Rejected'
+          backgroundColor='red'
+          borderColor='red'
+          setCategoryOpen={setRejectedOpen}
+          categoryOpen={rejectedOpen}
+          categoryContent={rejectedContent}
+        >
+          asdf
+        </Category>
       </div>
 
       {/* plan post button */}
