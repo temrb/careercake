@@ -16,5 +16,5 @@ type Card
   company: String!
   link: String
   category: [String!]!
-  date: [AWSDate!]!
+  date: [AWSDateTime!]!
 }

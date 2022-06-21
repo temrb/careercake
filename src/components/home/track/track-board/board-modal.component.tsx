@@ -17,7 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { API, Storage } from 'aws-amplify';
 import { v4 as uuidv4 } from 'uuid';
 import { createCard } from '../../../../graphql/mutations';
-import { CreateCardInput } from '../../../../API';
+import { CreateCardInput, CreateCardMutation } from '../../../../API';
 import { useRouter } from 'next/router';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 
@@ -25,8 +25,6 @@ interface IFormInput {
   job: string;
   company: string;
   link?: string;
-  category: string;
-  date: string;
 }
 
 const style = {
@@ -46,7 +44,6 @@ const BoardModal = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [categoryInput, setCategoryInput] = useState<string>('Applied');
-
   const [dateInput, setDateInput] = useState<Date | null>(new Date(Date.now()));
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -61,11 +58,26 @@ const BoardModal = () => {
 
   const handleCloseModal = () => useAppDispatch(setModal(false));
 
-  const onSubmit: SubmitHandler<IFormInput> = async () => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setLoading(true);
     try {
+      const createNewCardInput: CreateCardInput = {
+        job: data.job,
+        company: data.company,
+        link: data?.link,
+        category: [categoryInput],
+        date: [dateInput!.toISOString()],
+      };
+      const createNewCard = (await API.graphql({
+        query: createCard,
+        variables: {
+          input: createNewCardInput,
+        },
+        authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+      })) as { data: CreateCardMutation };
       console.log(
-        '🚀 ~ file: post-modal.component.tsx ~ line 174 ~ constonSubmit:SubmitHandler<IFormInput>= ~ createNewPost'
+        '🚀 ~ file: board-modal.component.tsx ~ line 80 ~ constonSubmit:SubmitHandler<IFormInput>= ~ createNewCard',
+        createNewCard
       );
       setLoading(false);
     } catch (err) {
@@ -74,7 +86,6 @@ const BoardModal = () => {
       setError(true);
     }
   };
-
   return (
     <Box sx={style}>
       {loading ? (
@@ -141,7 +152,6 @@ const BoardModal = () => {
                   <MenuItem value={'Rejected'}>Rejected</MenuItem>
                 </Select>
               </FormControl>
-
               {/* DATE / TIME */}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <MobileDateTimePicker
@@ -159,7 +169,6 @@ const BoardModal = () => {
                 />
               </LocalizationProvider>
             </div>
-
             {/* MODAL SUBMIT BUTTONS */}
             <div className='grid content-end'>
               <div className={'flex justify-between gap-2 '}>
