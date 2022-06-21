@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "careercakeapi",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Volumes/Temur XSSD/my projects/careercake/amplify/backend/api/careercakeapi/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 364,
+      "apiKeyExpirationDate": "2023-06-20T01:43:27.881Z",
+      "keyDescription": "CareerCake API Key"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authcareercake5970a561"
+      }
+    ]
+  }
+}
