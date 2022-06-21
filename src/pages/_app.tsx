@@ -10,20 +10,24 @@ import { Amplify } from 'aws-amplify';
 import AuthContext from '../context/AuthContext';
 import config from '../aws-exports';
 
+Amplify.configure({ ...config, ssr: true });
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
       <Provider store={store}>
         <NextNProgress />
-        <Layout>
-          <Head>
-            <meta
-              name='viewport'
-              content='width=device-width, initial-scale=1'
-            />
-          </Head>
-          <Component {...pageProps} />
-        </Layout>
+        <AuthContext>
+          <Layout>
+            <Head>
+              <meta
+                name='viewport'
+                content='width=device-width, initial-scale=1'
+              />
+            </Head>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthContext>
       </Provider>
     </React.StrictMode>
   );

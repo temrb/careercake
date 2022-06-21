@@ -20,7 +20,10 @@ const TrackBoard = () => {
   const appliedContent = useAppSelector(
     (state: RootState) => state.track.appliedContent
   );
-  console.log("🚀 ~ file: track-board.component.tsx ~ line 23 ~ TrackBoard ~ appliedContent", appliedContent)
+  console.log(
+    '🚀 ~ file: track-board.component.tsx ~ line 23 ~ TrackBoard ~ appliedContent',
+    appliedContent
+  );
   const interviewContent = useAppSelector(
     (state: RootState) => state.track.interviewContent
   );
@@ -33,7 +36,10 @@ const TrackBoard = () => {
   const rejectedContent = useAppSelector(
     (state: RootState) => state.track.rejectedContent
   );
-  console.log("🚀 ~ file: track-board.component.tsx ~ line 36 ~ TrackBoard ~ rejectedContent", rejectedContent)
+  console.log(
+    '🚀 ~ file: track-board.component.tsx ~ line 36 ~ TrackBoard ~ rejectedContent',
+    rejectedContent
+  );
 
   const handleOpenModal = () => useAppDispatch(setModal(true));
   const handleCloseModal = () => useAppDispatch(setModal(false));
@@ -54,86 +60,96 @@ const TrackBoard = () => {
       {/* board */}
       <div className='pt-6 px-6 grid lg:grid-cols-5 grid-cols-1 gap-4'>
         <div className=''>
-          <div className='flex justify-between font-semibold py-3 bg-gray-300/50 shadow-md px-3 items-center rounded-lg'>
+          <button
+            className='flex justify-between font-semibold py-3 bg-gray-300/50 shadow-md px-3 items-center rounded-lg w-full'
+            onClick={() => setAppliedOpen(!appliedOpen)}
+          >
             <span className='flex justify-start items-center'>Applied</span>
             <span className='flex justify-end items-center gap-2'>
-              <span className='font-light text-sm'>({appliedContent.length})</span>
-              <span
-                className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'
-                onClick={() => setAppliedOpen(!appliedOpen)}
-              >
+              <span className='font-light text-sm'>
+                ({appliedContent.length})
+              </span>
+              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
                 {appliedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </span>
             </span>
-          </div>
+          </button>
           {appliedOpen && (
             <div className='mt-4 flex flex-col space-y-4 border-gray-400/50 border-4 rounded-lg border-dashed p-4'></div>
           )}
         </div>
         <div className=''>
-          <div className='flex justify-between font-semibold py-3 bg-blue-300 shadow-md px-3 items-center rounded-lg'>
+          <button
+            className='flex justify-between font-semibold py-3 bg-blue-300 shadow-md px-3 items-center rounded-lg w-full'
+            onClick={() => setInterviewOpen(!interviewOpen)}
+          >
             <span className='flex justify-start items-center'>Interview</span>
             <span className='flex justify-end items-center gap-2'>
-              <span className='font-light text-sm'>({interviewContent.length})</span>
-              <span
-                className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'
-                onClick={() => setInterviewOpen(!interviewOpen)}
-              >
+              <span className='font-light text-sm'>
+                ({interviewContent.length})
+              </span>
+              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
                 {interviewOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </span>
             </span>
-          </div>
+          </button>
           {interviewOpen && (
             <div className='mt-4 flex flex-col space-y-4 border-blue-400/50 border-4 rounded-lg border-dashed p-4'></div>
           )}
         </div>
         <div className=''>
-          <div className='flex justify-between font-semibold py-3 bg-orange-300 shadow-md px-3 items-center rounded-lg'>
+          <button
+            className='flex justify-between font-semibold py-3 bg-orange-300 shadow-md px-3 items-center rounded-lg w-full'
+            onClick={() => setPendingOpen(!pendingOpen)}
+          >
             <span className='flex justify-start items-center'>Pending</span>
             <span className='flex justify-end items-center gap-2'>
-              <span className='font-light text-sm'>({pendingContent.length})</span>
-              <span
-                className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'
-                onClick={() => setPendingOpen(!pendingOpen)}
-              >
+              <span className='font-light text-sm'>
+                ({pendingContent.length})
+              </span>
+              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
                 {pendingOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </span>
             </span>
-          </div>
+          </button>
           {pendingOpen && (
             <div className='mt-4 flex flex-col space-y-4 border-orange-400/50 border-4 rounded-lg border-dashed p-4'></div>
           )}
         </div>
         <div className=''>
-          <div className='flex justify-between font-semibold py-3 bg-green-300 shadow-md px-3 items-center rounded-lg'>
+          <button
+            className='flex justify-between font-semibold py-3 bg-green-300 shadow-md px-3 items-center rounded-lg w-full'
+            onClick={() => setOfferOpen(!offerOpen)}
+          >
             <span className='flex justify-start items-center'>Offer</span>
             <span className='flex justify-end items-center gap-2'>
-              <span className='font-light text-sm'>({offerContent.length})</span>
-              <span
-                className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'
-                onClick={() => setOfferOpen(!offerOpen)}
-              >
+              <span className='font-light text-sm'>
+                ({offerContent.length})
+              </span>
+              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
                 {offerOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </span>
             </span>
-          </div>
+          </button>
           {offerOpen && (
             <div className='mt-4 flex flex-col space-y-4 border-green-400/50 border-4 rounded-lg border-dashed p-4'></div>
           )}
         </div>
         <div className=''>
-          <div className='flex justify-between font-semibold py-3 bg-red-300 shadow-md px-3 items-center rounded-lg'>
+          <button
+            className='flex justify-between font-semibold py-3 bg-red-300 shadow-md px-3 items-center rounded-lg w-full'
+            onClick={() => setRejectedOpen(!rejectedOpen)}
+          >
             <span className='flex justify-start items-center'>Rejected</span>
             <span className='flex justify-end items-center gap-2'>
-              <span className='font-light text-sm'>({rejectedContent.length})</span>
-              <span
-                className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'
-                onClick={() => setRejectedOpen(!rejectedOpen)}
-              >
+              <span className='font-light text-sm'>
+                ({rejectedContent.length})
+              </span>
+              <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
                 {rejectedOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </span>
             </span>
-          </div>
+          </button>
           {rejectedOpen && (
             <div className='mt-4 flex flex-col space-y-4 border-red-400/50 border-4 rounded-lg border-dashed p-4'></div>
           )}

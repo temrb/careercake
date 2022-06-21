@@ -9,7 +9,7 @@ const Index: NextPage = () => {
   return (
     <main className='min-h-screen'>
       <Head>
-        <title>Caila - Home</title>
+        <title>CareerCake</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
