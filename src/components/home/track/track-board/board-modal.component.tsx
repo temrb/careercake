@@ -14,10 +14,17 @@ import {
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { API, Storage } from 'aws-amplify';
+import { v4 as uuidv4 } from 'uuid';
+import { createCard } from '../../../../graphql/mutations';
+import { CreateCardInput } from '../../../../API';
+import { useRouter } from 'next/router';
+import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 
 interface IFormInput {
   job: string;
   company: string;
+  link?: string;
   category: string;
   date: string;
 }
@@ -74,7 +81,7 @@ const BoardModal = () => {
         <div>loading</div>
       ) : (
         <>
-          <h1 className='text-2xl py-2 text-center font-light mx-auto'>
+          <h1 className='text-2xl py-1 text-center font-light mx-auto'>
             Add to <span className='font-bold'>{categoryInput}</span>
           </h1>
           <form
@@ -109,6 +116,16 @@ const BoardModal = () => {
                 placeholder='Google'
                 helperText={!!errors?.company ? 'Required' : ''}
               />
+              {/* LINK */}
+              <TextField
+                className='h-full w-full'
+                type='text'
+                label='Link'
+                {...register('company', {
+                  required: false,
+                })}
+                placeholder='https://careers.google.com/'
+              />
               {/* CATEGORY */}
               <FormControl fullWidth>
                 <InputLabel>Category</InputLabel>
@@ -117,9 +134,9 @@ const BoardModal = () => {
                   label='Category'
                   onChange={handleChange}
                 >
+                  <MenuItem value={'Wishlist'}>Wishlist</MenuItem>
                   <MenuItem value={'Applied'}>Applied</MenuItem>
                   <MenuItem value={'Interview'}>Interview</MenuItem>
-                  <MenuItem value={'Pending'}>Pending</MenuItem>
                   <MenuItem value={'Offer'}>Offer</MenuItem>
                   <MenuItem value={'Rejected'}>Rejected</MenuItem>
                 </Select>

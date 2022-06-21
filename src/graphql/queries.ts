@@ -11,6 +11,7 @@ export const getTrack = /* GraphQL */ `
           id
           job
           company
+          link
           category
           date
           createdAt
@@ -52,6 +53,7 @@ export const getCard = /* GraphQL */ `
       id
       job
       company
+      link
       category
       date
       createdAt
@@ -72,6 +74,7 @@ export const listCards = /* GraphQL */ `
         id
         job
         company
+        link
         category
         date
         createdAt

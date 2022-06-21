@@ -14,6 +14,7 @@ export const createTrack = /* GraphQL */ `
           id
           job
           company
+          link
           category
           date
           createdAt
@@ -41,6 +42,7 @@ export const updateTrack = /* GraphQL */ `
           id
           job
           company
+          link
           category
           date
           createdAt
@@ -68,6 +70,7 @@ export const deleteTrack = /* GraphQL */ `
           id
           job
           company
+          link
           category
           date
           createdAt
@@ -92,6 +95,7 @@ export const createCard = /* GraphQL */ `
       id
       job
       company
+      link
       category
       date
       createdAt
@@ -110,6 +114,7 @@ export const updateCard = /* GraphQL */ `
       id
       job
       company
+      link
       category
       date
       createdAt
@@ -128,6 +133,7 @@ export const deleteCard = /* GraphQL */ `
       id
       job
       company
+      link
       category
       date
       createdAt
