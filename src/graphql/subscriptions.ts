@@ -2,9 +2,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTrack = /* GraphQL */ `
-  subscription OnCreateTrack($owner: String) {
-    onCreateTrack(owner: $owner) {
+export const onCreateTrackBoard = /* GraphQL */ `
+  subscription OnCreateTrackBoard($owner: String) {
+    onCreateTrackBoard(owner: $owner) {
       id
       card {
         items {
@@ -16,7 +16,7 @@ export const onCreateTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -27,9 +27,9 @@ export const onCreateTrack = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTrack = /* GraphQL */ `
-  subscription OnUpdateTrack($owner: String) {
-    onUpdateTrack(owner: $owner) {
+export const onUpdateTrackBoard = /* GraphQL */ `
+  subscription OnUpdateTrackBoard($owner: String) {
+    onUpdateTrackBoard(owner: $owner) {
       id
       card {
         items {
@@ -41,7 +41,7 @@ export const onUpdateTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -52,9 +52,9 @@ export const onUpdateTrack = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTrack = /* GraphQL */ `
-  subscription OnDeleteTrack($owner: String) {
-    onDeleteTrack(owner: $owner) {
+export const onDeleteTrackBoard = /* GraphQL */ `
+  subscription OnDeleteTrackBoard($owner: String) {
+    onDeleteTrackBoard(owner: $owner) {
       id
       card {
         items {
@@ -66,7 +66,7 @@ export const onDeleteTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -86,9 +86,29 @@ export const onCreateCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
       owner
     }
   }
@@ -102,9 +122,29 @@ export const onUpdateCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
       owner
     }
   }
@@ -118,9 +158,128 @@ export const onDeleteCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
+      owner
+    }
+  }
+`;
+export const onCreateMutatedStamp = /* GraphQL */ `
+  subscription OnCreateMutatedStamp($owner: String) {
+    onCreateMutatedStamp(owner: $owner) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
+      owner
+    }
+  }
+`;
+export const onUpdateMutatedStamp = /* GraphQL */ `
+  subscription OnUpdateMutatedStamp($owner: String) {
+    onUpdateMutatedStamp(owner: $owner) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
+      owner
+    }
+  }
+`;
+export const onDeleteMutatedStamp = /* GraphQL */ `
+  subscription OnDeleteMutatedStamp($owner: String) {
+    onDeleteMutatedStamp(owner: $owner) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
       owner
     }
   }

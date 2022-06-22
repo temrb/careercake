@@ -15,7 +15,7 @@ const Category = (Props: Props) => {
   return (
     <div className=''>
       <button
-        className={`flex justify-between font-semibold py-3 bg-${Props.backgroundColor}-300 shadow-md px-3 items-center rounded-lg w-full`}
+        className={`flex justify-between font-semibold py-3 ${Props.backgroundColor} shadow-md px-3 items-center rounded-lg w-full`}
         onClick={() => Props.setCategoryOpen(!Props.categoryOpen)}
       >
         <span className='flex justify-start items-center'>{Props.title}</span>
@@ -27,10 +27,10 @@ const Category = (Props: Props) => {
       </button>
       {Props.categoryOpen && (
         <div
-          className={`mt-4 flex flex-col space-y-4 border-${Props.borderColor}-400/50 border-4 rounded-lg border-dashed p-2`}
+          className={`mt-4 flex flex-col space-y-4 ${Props.borderColor} border-4 rounded-lg border-dashed p-2`}
         >
           <div
-            className={`font-semibold text-xs bg-${Props.backgroundColor}-300 mx-auto p-2 rounded-lg `}
+            className={`font-semibold text-xs ${Props.backgroundColor} mx-auto p-2 rounded-lg `}
           >
             {Props.categoryContent.length} items
           </div>

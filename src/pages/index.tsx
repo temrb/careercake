@@ -4,10 +4,13 @@ import Head from 'next/head';
 import Home from '../components/home/home.component';
 import MenuButtons from '../components/menu-buttons.component';
 import Header from '../components/header.component';
+import { useSession } from '../context/AuthContext';
 
 const Index: NextPage = () => {
+  const { user } = useSession();
+
   return (
-    <main className='min-h-screen'>
+    <div className='min-h-screen'>
       <Head>
         <title>CareerCake</title>
         <link rel='icon' href='/favicon.ico' />
@@ -19,9 +22,9 @@ const Index: NextPage = () => {
       {/* menu buttons */}
       <MenuButtons />
 
-      {/* home page */}
+      {/* home component */}
       <Home />
-    </main>
+    </div>
   );
 };
 

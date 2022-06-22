@@ -2,12 +2,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTrack = /* GraphQL */ `
-  mutation CreateTrack(
-    $input: CreateTrackInput!
-    $condition: ModelTrackConditionInput
+export const createTrackBoard = /* GraphQL */ `
+  mutation CreateTrackBoard(
+    $input: CreateTrackBoardInput!
+    $condition: ModelTrackBoardConditionInput
   ) {
-    createTrack(input: $input, condition: $condition) {
+    createTrackBoard(input: $input, condition: $condition) {
       id
       card {
         items {
@@ -19,7 +19,7 @@ export const createTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -30,12 +30,12 @@ export const createTrack = /* GraphQL */ `
     }
   }
 `;
-export const updateTrack = /* GraphQL */ `
-  mutation UpdateTrack(
-    $input: UpdateTrackInput!
-    $condition: ModelTrackConditionInput
+export const updateTrackBoard = /* GraphQL */ `
+  mutation UpdateTrackBoard(
+    $input: UpdateTrackBoardInput!
+    $condition: ModelTrackBoardConditionInput
   ) {
-    updateTrack(input: $input, condition: $condition) {
+    updateTrackBoard(input: $input, condition: $condition) {
       id
       card {
         items {
@@ -47,7 +47,7 @@ export const updateTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -58,12 +58,12 @@ export const updateTrack = /* GraphQL */ `
     }
   }
 `;
-export const deleteTrack = /* GraphQL */ `
-  mutation DeleteTrack(
-    $input: DeleteTrackInput!
-    $condition: ModelTrackConditionInput
+export const deleteTrackBoard = /* GraphQL */ `
+  mutation DeleteTrackBoard(
+    $input: DeleteTrackBoardInput!
+    $condition: ModelTrackBoardConditionInput
   ) {
-    deleteTrack(input: $input, condition: $condition) {
+    deleteTrackBoard(input: $input, condition: $condition) {
       id
       card {
         items {
@@ -75,7 +75,7 @@ export const deleteTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -98,9 +98,29 @@ export const createCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
       owner
     }
   }
@@ -117,9 +137,29 @@ export const updateCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
       owner
     }
   }
@@ -136,9 +176,137 @@ export const deleteCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
+      owner
+    }
+  }
+`;
+export const createMutatedStamp = /* GraphQL */ `
+  mutation CreateMutatedStamp(
+    $input: CreateMutatedStampInput!
+    $condition: ModelMutatedStampConditionInput
+  ) {
+    createMutatedStamp(input: $input, condition: $condition) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
+      owner
+    }
+  }
+`;
+export const updateMutatedStamp = /* GraphQL */ `
+  mutation UpdateMutatedStamp(
+    $input: UpdateMutatedStampInput!
+    $condition: ModelMutatedStampConditionInput
+  ) {
+    updateMutatedStamp(input: $input, condition: $condition) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
+      owner
+    }
+  }
+`;
+export const deleteMutatedStamp = /* GraphQL */ `
+  mutation DeleteMutatedStamp(
+    $input: DeleteMutatedStampInput!
+    $condition: ModelMutatedStampConditionInput
+  ) {
+    deleteMutatedStamp(input: $input, condition: $condition) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
       owner
     }
   }

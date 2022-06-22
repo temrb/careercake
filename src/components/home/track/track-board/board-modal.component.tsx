@@ -65,8 +65,8 @@ const BoardModal = () => {
         job: data.job,
         company: data.company,
         link: data?.link,
-        category: [categoryInput],
-        date: [dateInput!.toISOString()],
+        category: categoryInput,
+        date: dateInput!.toISOString(),
       };
       const createNewCard = (await API.graphql({
         query: createCard,
@@ -80,6 +80,7 @@ const BoardModal = () => {
         createNewCard
       );
       setLoading(false);
+      handleCloseModal();
     } catch (err) {
       console.log(err);
       setLoading(false);

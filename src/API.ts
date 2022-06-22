@@ -2,18 +2,18 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTrackInput = {
+export type CreateTrackBoardInput = {
   id?: string | null,
 };
 
-export type ModelTrackConditionInput = {
-  and?: Array< ModelTrackConditionInput | null > | null,
-  or?: Array< ModelTrackConditionInput | null > | null,
-  not?: ModelTrackConditionInput | null,
+export type ModelTrackBoardConditionInput = {
+  and?: Array< ModelTrackBoardConditionInput | null > | null,
+  or?: Array< ModelTrackBoardConditionInput | null > | null,
+  not?: ModelTrackBoardConditionInput | null,
 };
 
-export type Track = {
-  __typename: "Track",
+export type TrackBoard = {
+  __typename: "TrackBoard",
   id: string,
   card?: ModelCardConnection | null,
   createdAt: string,
@@ -33,19 +33,38 @@ export type Card = {
   job: string,
   company: string,
   link?: string | null,
-  category: Array< string >,
-  date: Array< string >,
+  category: string,
+  date: string,
+  mutationStamp?: ModelMutatedStampConnection | null,
+  trackBoard?: TrackBoard | null,
   createdAt: string,
   updatedAt: string,
-  trackCardId?: string | null,
+  trackBoardCardId?: string | null,
   owner?: string | null,
 };
 
-export type UpdateTrackInput = {
+export type ModelMutatedStampConnection = {
+  __typename: "ModelMutatedStampConnection",
+  items:  Array<MutatedStamp | null >,
+  nextToken?: string | null,
+};
+
+export type MutatedStamp = {
+  __typename: "MutatedStamp",
+  id: string,
+  stamp: Array< string >,
+  card?: Card | null,
+  createdAt: string,
+  updatedAt: string,
+  cardMutationStampId: string,
+  owner?: string | null,
+};
+
+export type UpdateTrackBoardInput = {
   id: string,
 };
 
-export type DeleteTrackInput = {
+export type DeleteTrackBoardInput = {
   id: string,
 };
 
@@ -54,9 +73,9 @@ export type CreateCardInput = {
   job: string,
   company: string,
   link?: string | null,
-  category: Array< string >,
-  date: Array< string >,
-  trackCardId?: string | null,
+  category: string,
+  date: string,
+  trackBoardCardId?: string | null,
 };
 
 export type ModelCardConditionInput = {
@@ -68,7 +87,7 @@ export type ModelCardConditionInput = {
   and?: Array< ModelCardConditionInput | null > | null,
   or?: Array< ModelCardConditionInput | null > | null,
   not?: ModelCardConditionInput | null,
-  trackCardId?: ModelIDInput | null,
+  trackBoardCardId?: ModelIDInput | null,
 };
 
 export type ModelStringInput = {
@@ -132,25 +151,49 @@ export type UpdateCardInput = {
   job?: string | null,
   company?: string | null,
   link?: string | null,
-  category?: Array< string > | null,
-  date?: Array< string > | null,
-  trackCardId?: string | null,
+  category?: string | null,
+  date?: string | null,
+  trackBoardCardId?: string | null,
 };
 
 export type DeleteCardInput = {
   id: string,
 };
 
-export type ModelTrackFilterInput = {
-  id?: ModelIDInput | null,
-  and?: Array< ModelTrackFilterInput | null > | null,
-  or?: Array< ModelTrackFilterInput | null > | null,
-  not?: ModelTrackFilterInput | null,
+export type CreateMutatedStampInput = {
+  id?: string | null,
+  stamp: Array< string >,
+  cardMutationStampId: string,
 };
 
-export type ModelTrackConnection = {
-  __typename: "ModelTrackConnection",
-  items:  Array<Track | null >,
+export type ModelMutatedStampConditionInput = {
+  stamp?: ModelStringInput | null,
+  and?: Array< ModelMutatedStampConditionInput | null > | null,
+  or?: Array< ModelMutatedStampConditionInput | null > | null,
+  not?: ModelMutatedStampConditionInput | null,
+  cardMutationStampId?: ModelIDInput | null,
+};
+
+export type UpdateMutatedStampInput = {
+  id: string,
+  stamp?: Array< string > | null,
+  cardMutationStampId?: string | null,
+};
+
+export type DeleteMutatedStampInput = {
+  id: string,
+};
+
+export type ModelTrackBoardFilterInput = {
+  id?: ModelIDInput | null,
+  and?: Array< ModelTrackBoardFilterInput | null > | null,
+  or?: Array< ModelTrackBoardFilterInput | null > | null,
+  not?: ModelTrackBoardFilterInput | null,
+};
+
+export type ModelTrackBoardConnection = {
+  __typename: "ModelTrackBoardConnection",
+  items:  Array<TrackBoard | null >,
   nextToken?: string | null,
 };
 
@@ -164,17 +207,26 @@ export type ModelCardFilterInput = {
   and?: Array< ModelCardFilterInput | null > | null,
   or?: Array< ModelCardFilterInput | null > | null,
   not?: ModelCardFilterInput | null,
-  trackCardId?: ModelIDInput | null,
+  trackBoardCardId?: ModelIDInput | null,
 };
 
-export type CreateTrackMutationVariables = {
-  input: CreateTrackInput,
-  condition?: ModelTrackConditionInput | null,
+export type ModelMutatedStampFilterInput = {
+  id?: ModelIDInput | null,
+  stamp?: ModelStringInput | null,
+  and?: Array< ModelMutatedStampFilterInput | null > | null,
+  or?: Array< ModelMutatedStampFilterInput | null > | null,
+  not?: ModelMutatedStampFilterInput | null,
+  cardMutationStampId?: ModelIDInput | null,
 };
 
-export type CreateTrackMutation = {
-  createTrack?:  {
-    __typename: "Track",
+export type CreateTrackBoardMutationVariables = {
+  input: CreateTrackBoardInput,
+  condition?: ModelTrackBoardConditionInput | null,
+};
+
+export type CreateTrackBoardMutation = {
+  createTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -184,11 +236,11 @@ export type CreateTrackMutation = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -199,14 +251,14 @@ export type CreateTrackMutation = {
   } | null,
 };
 
-export type UpdateTrackMutationVariables = {
-  input: UpdateTrackInput,
-  condition?: ModelTrackConditionInput | null,
+export type UpdateTrackBoardMutationVariables = {
+  input: UpdateTrackBoardInput,
+  condition?: ModelTrackBoardConditionInput | null,
 };
 
-export type UpdateTrackMutation = {
-  updateTrack?:  {
-    __typename: "Track",
+export type UpdateTrackBoardMutation = {
+  updateTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -216,11 +268,11 @@ export type UpdateTrackMutation = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -231,14 +283,14 @@ export type UpdateTrackMutation = {
   } | null,
 };
 
-export type DeleteTrackMutationVariables = {
-  input: DeleteTrackInput,
-  condition?: ModelTrackConditionInput | null,
+export type DeleteTrackBoardMutationVariables = {
+  input: DeleteTrackBoardInput,
+  condition?: ModelTrackBoardConditionInput | null,
 };
 
-export type DeleteTrackMutation = {
-  deleteTrack?:  {
-    __typename: "Track",
+export type DeleteTrackBoardMutation = {
+  deleteTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -248,11 +300,11 @@ export type DeleteTrackMutation = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -275,11 +327,35 @@ export type CreateCardMutation = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -296,11 +372,35 @@ export type UpdateCardMutation = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -317,22 +417,169 @@ export type DeleteCardMutation = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
 
-export type GetTrackQueryVariables = {
+export type CreateMutatedStampMutationVariables = {
+  input: CreateMutatedStampInput,
+  condition?: ModelMutatedStampConditionInput | null,
+};
+
+export type CreateMutatedStampMutation = {
+  createMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateMutatedStampMutationVariables = {
+  input: UpdateMutatedStampInput,
+  condition?: ModelMutatedStampConditionInput | null,
+};
+
+export type UpdateMutatedStampMutation = {
+  updateMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteMutatedStampMutationVariables = {
+  input: DeleteMutatedStampInput,
+  condition?: ModelMutatedStampConditionInput | null,
+};
+
+export type DeleteMutatedStampMutation = {
+  deleteMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type GetTrackBoardQueryVariables = {
   id: string,
 };
 
-export type GetTrackQuery = {
-  getTrack?:  {
-    __typename: "Track",
+export type GetTrackBoardQuery = {
+  getTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -342,11 +589,11 @@ export type GetTrackQuery = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -357,17 +604,17 @@ export type GetTrackQuery = {
   } | null,
 };
 
-export type ListTracksQueryVariables = {
-  filter?: ModelTrackFilterInput | null,
+export type ListTrackBoardsQueryVariables = {
+  filter?: ModelTrackBoardFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTracksQuery = {
-  listTracks?:  {
-    __typename: "ModelTrackConnection",
+export type ListTrackBoardsQuery = {
+  listTrackBoards?:  {
+    __typename: "ModelTrackBoardConnection",
     items:  Array< {
-      __typename: "Track",
+      __typename: "TrackBoard",
       id: string,
       card?:  {
         __typename: "ModelCardConnection",
@@ -392,11 +639,35 @@ export type GetCardQuery = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -416,24 +687,110 @@ export type ListCardsQuery = {
       job: string,
       company: string,
       link?: string | null,
-      category: Array< string >,
-      date: Array< string >,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
-      trackCardId?: string | null,
+      trackBoardCardId?: string | null,
       owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
 };
 
-export type OnCreateTrackSubscriptionVariables = {
+export type GetMutatedStampQueryVariables = {
+  id: string,
+};
+
+export type GetMutatedStampQuery = {
+  getMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListMutatedStampsQueryVariables = {
+  filter?: ModelMutatedStampFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListMutatedStampsQuery = {
+  listMutatedStamps?:  {
+    __typename: "ModelMutatedStampConnection",
+    items:  Array< {
+      __typename: "MutatedStamp",
+      id: string,
+      stamp: Array< string >,
+      card?:  {
+        __typename: "Card",
+        id: string,
+        job: string,
+        company: string,
+        link?: string | null,
+        category: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        trackBoardCardId?: string | null,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      cardMutationStampId: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type OnCreateTrackBoardSubscriptionVariables = {
   owner?: string | null,
 };
 
-export type OnCreateTrackSubscription = {
-  onCreateTrack?:  {
-    __typename: "Track",
+export type OnCreateTrackBoardSubscription = {
+  onCreateTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -443,11 +800,11 @@ export type OnCreateTrackSubscription = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -458,13 +815,13 @@ export type OnCreateTrackSubscription = {
   } | null,
 };
 
-export type OnUpdateTrackSubscriptionVariables = {
+export type OnUpdateTrackBoardSubscriptionVariables = {
   owner?: string | null,
 };
 
-export type OnUpdateTrackSubscription = {
-  onUpdateTrack?:  {
-    __typename: "Track",
+export type OnUpdateTrackBoardSubscription = {
+  onUpdateTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -474,11 +831,11 @@ export type OnUpdateTrackSubscription = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -489,13 +846,13 @@ export type OnUpdateTrackSubscription = {
   } | null,
 };
 
-export type OnDeleteTrackSubscriptionVariables = {
+export type OnDeleteTrackBoardSubscriptionVariables = {
   owner?: string | null,
 };
 
-export type OnDeleteTrackSubscription = {
-  onDeleteTrack?:  {
-    __typename: "Track",
+export type OnDeleteTrackBoardSubscription = {
+  onDeleteTrackBoard?:  {
+    __typename: "TrackBoard",
     id: string,
     card?:  {
       __typename: "ModelCardConnection",
@@ -505,11 +862,11 @@ export type OnDeleteTrackSubscription = {
         job: string,
         company: string,
         link?: string | null,
-        category: Array< string >,
-        date: Array< string >,
+        category: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
-        trackCardId?: string | null,
+        trackBoardCardId?: string | null,
         owner?: string | null,
       } | null >,
       nextToken?: string | null,
@@ -531,11 +888,35 @@ export type OnCreateCardSubscription = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -551,11 +932,35 @@ export type OnUpdateCardSubscription = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -571,11 +976,155 @@ export type OnDeleteCardSubscription = {
     job: string,
     company: string,
     link?: string | null,
-    category: Array< string >,
-    date: Array< string >,
+    category: string,
+    date: string,
+    mutationStamp?:  {
+      __typename: "ModelMutatedStampConnection",
+      items:  Array< {
+        __typename: "MutatedStamp",
+        id: string,
+        stamp: Array< string >,
+        createdAt: string,
+        updatedAt: string,
+        cardMutationStampId: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    trackBoard?:  {
+      __typename: "TrackBoard",
+      id: string,
+      card?:  {
+        __typename: "ModelCardConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
-    trackCardId?: string | null,
+    trackBoardCardId?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateMutatedStampSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnCreateMutatedStampSubscription = {
+  onCreateMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateMutatedStampSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnUpdateMutatedStampSubscription = {
+  onUpdateMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteMutatedStampSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnDeleteMutatedStampSubscription = {
+  onDeleteMutatedStamp?:  {
+    __typename: "MutatedStamp",
+    id: string,
+    stamp: Array< string >,
+    card?:  {
+      __typename: "Card",
+      id: string,
+      job: string,
+      company: string,
+      link?: string | null,
+      category: string,
+      date: string,
+      mutationStamp?:  {
+        __typename: "ModelMutatedStampConnection",
+        nextToken?: string | null,
+      } | null,
+      trackBoard?:  {
+        __typename: "TrackBoard",
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      trackBoardCardId?: string | null,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    cardMutationStampId: string,
     owner?: string | null,
   } | null,
 };

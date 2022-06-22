@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-// import CopyAILogo from '../../public/assets/logos/copyai.logo'
-// import { motion } from 'framer-motion'
-// import { useSession } from '../context/AuthContext'
+import { Auth } from 'aws-amplify';
 
 const Header = () => {
   return (
@@ -10,7 +8,12 @@ const Header = () => {
       <div className='lg:flex hidden items-center font-Fascinate text-xl text-accent1 justify-start w-full'>
         CareerCake
       </div>
-      <div className='lg:flex hidden justify-end w-full'>Log Out</div>
+      <button
+        className='lg:flex hidden justify-end w-full'
+        onClick={() => Auth.signOut()}
+      >
+        Log Out
+      </button>
     </header>
   );
 };

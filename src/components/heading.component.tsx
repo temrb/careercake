@@ -20,7 +20,7 @@ const Heading = ({ icon, title, description, premium }: Props) => {
   const isSubscribed = false;
 
   return (
-    <div className=' z-10 flex items-center px-6 pb-6 pt-6'>
+    <div className=' z-10 flex items-center px-6 pb-6 pt-6 sticky top-0 bg-white shadow-lg lg:shadow-none'>
       <div className='flex flex-grow justify-start space-x-5'>
         <div className='item-center flex'>
           {/* icon */}

@@ -2,9 +2,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTrack = /* GraphQL */ `
-  query GetTrack($id: ID!) {
-    getTrack(id: $id) {
+export const getTrackBoard = /* GraphQL */ `
+  query GetTrackBoard($id: ID!) {
+    getTrackBoard(id: $id) {
       id
       card {
         items {
@@ -16,7 +16,7 @@ export const getTrack = /* GraphQL */ `
           date
           createdAt
           updatedAt
-          trackCardId
+          trackBoardCardId
           owner
         }
         nextToken
@@ -27,13 +27,13 @@ export const getTrack = /* GraphQL */ `
     }
   }
 `;
-export const listTracks = /* GraphQL */ `
-  query ListTracks(
-    $filter: ModelTrackFilterInput
+export const listTrackBoards = /* GraphQL */ `
+  query ListTrackBoards(
+    $filter: ModelTrackBoardFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTracks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTrackBoards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         card {
@@ -56,9 +56,29 @@ export const getCard = /* GraphQL */ `
       link
       category
       date
+      mutationStamp {
+        items {
+          id
+          stamp
+          createdAt
+          updatedAt
+          cardMutationStampId
+          owner
+        }
+        nextToken
+      }
+      trackBoard {
+        id
+        card {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
-      trackCardId
+      trackBoardCardId
       owner
     }
   }
@@ -77,9 +97,82 @@ export const listCards = /* GraphQL */ `
         link
         category
         date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
-        trackCardId
+        trackBoardCardId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getMutatedStamp = /* GraphQL */ `
+  query GetMutatedStamp($id: ID!) {
+    getMutatedStamp(id: $id) {
+      id
+      stamp
+      card {
+        id
+        job
+        company
+        link
+        category
+        date
+        mutationStamp {
+          nextToken
+        }
+        trackBoard {
+          id
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        trackBoardCardId
+        owner
+      }
+      createdAt
+      updatedAt
+      cardMutationStampId
+      owner
+    }
+  }
+`;
+export const listMutatedStamps = /* GraphQL */ `
+  query ListMutatedStamps(
+    $filter: ModelMutatedStampFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMutatedStamps(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        stamp
+        card {
+          id
+          job
+          company
+          link
+          category
+          date
+          createdAt
+          updatedAt
+          trackBoardCardId
+          owner
+        }
+        createdAt
+        updatedAt
+        cardMutationStampId
         owner
       }
       nextToken
