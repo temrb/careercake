@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { useAppDispatch } from '../../../../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
 import { setModal } from '../../../../redux/features/utilsSlice';
+import { setCategoryInput } from '../../../../redux/features/trackSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   TextField,
@@ -10,16 +11,20 @@ import {
   FormControl,
   Select,
   SelectChangeEvent,
+  CircularProgress,
 } from '@mui/material';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { API, Storage } from 'aws-amplify';
-import { v4 as uuidv4 } from 'uuid';
+import { API } from 'aws-amplify';
 import { createCard } from '../../../../graphql/mutations';
 import { CreateCardInput, CreateCardMutation } from '../../../../API';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+
+interface RootState {
+  track: any;
+}
 
 interface IFormInput {
   job: string;
@@ -40,14 +45,15 @@ const style = {
 };
 
 const BoardModal = () => {
-  const [disabled, setDisabled] = useState(false);
+  const categoryInput = useAppSelector(
+    (state: RootState) => state.track.categoryInput
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [categoryInput, setCategoryInput] = useState<string>('Applied');
   const [dateInput, setDateInput] = useState<Date | null>(new Date(Date.now()));
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategoryInput(event.target.value as string);
+    useAppDispatch(setCategoryInput(event.target.value as string));
   };
 
   const {
@@ -75,10 +81,6 @@ const BoardModal = () => {
         },
         authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
       })) as { data: CreateCardMutation };
-      console.log(
-        '🚀 ~ file: board-modal.component.tsx ~ line 80 ~ constonSubmit:SubmitHandler<IFormInput>= ~ createNewCard',
-        createNewCard
-      );
       setLoading(false);
       handleCloseModal();
     } catch (err) {
@@ -90,7 +92,9 @@ const BoardModal = () => {
   return (
     <Box sx={style}>
       {loading ? (
-        <div>loading</div>
+        <div className='place-content-center flex'>
+          <CircularProgress />
+        </div>
       ) : (
         <>
           <h1 className='text-2xl py-1 text-center font-light mx-auto'>
@@ -154,7 +158,7 @@ const BoardModal = () => {
                 </Select>
               </FormControl>
               {/* DATE / TIME */}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <MobileDateTimePicker
                   value={dateInput}
                   onChange={(newValue) => {

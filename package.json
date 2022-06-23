@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@aws-amplify/auth": "^4.5.8",
+    "@date-io/dayjs": "^2.14.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@heroicons/react": "^1.0.6",
@@ -16,7 +17,7 @@
     "@reduxjs/toolkit": "^1.8.2",
     "@types/react-redux": "^7.1.24",
     "aws-amplify": "^4.3.26",
-    "date-fns": "^2.28.0",
+    "dayjs": "^1.11.3",
     "framer-motion": "^6.3.11",
     "next": "latest",
     "nextjs-progressbar": "^0.0.14",
@@ -28,7 +29,6 @@
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
-    "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.2",

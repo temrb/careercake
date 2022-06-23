@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { PlusSmIcon } from '@heroicons/react/solid';
+import { OfficeBuildingIcon, BriefcaseIcon } from '@heroicons/react/solid';
 import Modal from '@mui/material/Modal';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
 import { setModal } from '../../../../redux/features/utilsSlice';
+import { setCategoryInput } from '../../../../redux/features/trackSlice';
 import BoardModal from './board-modal.component';
 import Category from './category.component';
 import { API } from 'aws-amplify';
@@ -12,20 +13,16 @@ import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 
 interface RootState {
   utils: any;
-  track: any;
 }
 
 const TrackBoard = () => {
   const modal = useAppSelector((state: RootState) => state.utils.modal);
-  const handleOpenModal = () => useAppDispatch(setModal(true));
   const handleCloseModal = () => useAppDispatch(setModal(false));
-
   const [appliedOpen, setAppliedOpen] = useState(false);
   const [interviewOpen, setInterviewOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
   const [rejectedOpen, setRejectedOpen] = useState(false);
-
   const [cards, setCards] = useState<Card[]>([]);
 
   useEffect(() => {
@@ -62,102 +59,199 @@ const TrackBoard = () => {
         <Category
           title='Wishlist'
           backgroundColor='bg-gray-400/80'
-          borderColor='border-gray-400/50'
+          contentBorderColor='border-gray-400/50'
+          contentHeadingColor='text-gray-500'
           setCategoryOpen={setWishlistOpen}
           categoryOpen={wishlistOpen}
-          categoryContent={cards.filter((card) => card.category === 'Wishlist')}
+          contentCount={cards.filter((card) => card.category === 'Wishlist')}
         >
           {cards
             .filter((card) => card.category === 'Wishlist')
-            .map((card) => (
-              <div className='flex flex-col justify-center items-center'>
-                {card.job}
+            .map((category) => (
+              <div
+                key={category.id}
+                className='bg-gray-400/50 p-2 rounded-md bg-white'
+              >
+                <div className='grid space-y-1'>
+                  <div className='flex items-center gap-2'>
+                    <div className='bg-white p-1 rounded-lg'>
+                      <BriefcaseIcon className='h-4' />
+                    </div>
+                    <h1 className='flex font-semibold text-ellipsis'>
+                      {category.job}
+                    </h1>
+                  </div>
+                  <div className='flex '>
+                    <div className='flex items-center gap-2'>
+                      <div className='bg-white p-1 rounded-lg'>
+                        <OfficeBuildingIcon className='h-4' />
+                      </div>
+                      <h2 className='flex text-ellipsis text-sm'>
+                        {category.company}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </Category>
         <Category
           title='Applied'
           backgroundColor='bg-orange-500/80'
-          borderColor='border-orange-400/50'
+          contentBorderColor='border-orange-400/50'
+          contentHeadingColor='text-orange-500'
           setCategoryOpen={setAppliedOpen}
           categoryOpen={appliedOpen}
-          categoryContent={cards.filter((card) => card.category === 'Applied')}
+          contentCount={cards.filter((card) => card.category === 'Applied')}
         >
           {cards
             .filter((card) => card.category === 'Applied')
-            .map((card) => (
-              <div className='flex flex-col justify-center items-center'>
-                {card.job}
+            .map((category) => (
+              <div
+                key={category.id}
+                className='bg-orange-400/50 p-2 rounded-md bg-white'
+              >
+                <div className='grid space-y-1'>
+                  <div className='flex items-center gap-2'>
+                    <div className='bg-white p-1 rounded-lg'>
+                      <BriefcaseIcon className='h-4' />
+                    </div>
+                    <h1 className='flex font-semibold text-ellipsis'>
+                      {category.job}
+                    </h1>
+                  </div>
+                  <div className='flex '>
+                    <div className='flex items-center gap-2'>
+                      <div className='bg-white p-1 rounded-lg'>
+                        <OfficeBuildingIcon className='h-4' />
+                      </div>
+                      <h2 className='flex text-ellipsis text-sm'>
+                        {category.company}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </Category>
         <Category
           title='Interview'
           backgroundColor='bg-blue-500/80'
-          borderColor='border-blue-400/50'
+          contentBorderColor='border-blue-400/50'
+          contentHeadingColor='text-blue-500'
           setCategoryOpen={setInterviewOpen}
           categoryOpen={interviewOpen}
-          categoryContent={cards.filter(
-            (card) => card.category === 'Interview'
-          )}
+          contentCount={cards.filter((card) => card.category === 'Interview')}
         >
           {cards
             .filter((card) => card.category === 'Interview')
-            .map((card) => (
-              <div className='flex flex-col justify-center items-center'>
-                {card.job}
+            .map((category) => (
+              <div
+                key={category.id}
+                className='bg-blue-400/50 p-2 rounded-md bg-white'
+              >
+                <div className='grid space-y-1'>
+                  <div className='flex items-center gap-2'>
+                    <div className='bg-white p-1 rounded-lg'>
+                      <BriefcaseIcon className='h-4' />
+                    </div>
+                    <h1 className='flex font-semibold text-ellipsis'>
+                      {category.job}
+                    </h1>
+                  </div>
+                  <div className='flex '>
+                    <div className='flex items-center gap-2'>
+                      <div className='bg-white p-1 rounded-lg'>
+                        <OfficeBuildingIcon className='h-4' />
+                      </div>
+                      <h2 className='flex text-ellipsis text-sm'>
+                        {category.company}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </Category>
         <Category
           title='Offer'
           backgroundColor='bg-green-500/80'
-          borderColor='border-green-400/50'
+          contentBorderColor='border-green-400/50'
+          contentHeadingColor='text-green-500'
           setCategoryOpen={setOfferOpen}
           categoryOpen={offerOpen}
-          categoryContent={cards.filter((card) => card.category === 'Offer')}
+          contentCount={cards.filter((card) => card.category === 'Offer')}
         >
           {cards
             .filter((card) => card.category === 'Offer')
-            .map((card) => (
-              <div className='flex flex-col justify-center items-center'>
-                {card.job}
+            .map((category) => (
+              <div
+                key={category.id}
+                className='bg-green-400/50 p-2 rounded-md bg-white'
+              >
+                <div className='grid space-y-1'>
+                  <div className='flex items-center gap-2'>
+                    <div className='bg-white p-1 rounded-lg'>
+                      <BriefcaseIcon className='h-4' />
+                    </div>
+                    <h1 className='flex font-semibold text-ellipsis'>
+                      {category.job}
+                    </h1>
+                  </div>
+                  <div className='flex '>
+                    <div className='flex items-center gap-2'>
+                      <div className='bg-white p-1 rounded-lg'>
+                        <OfficeBuildingIcon className='h-4' />
+                      </div>
+                      <h2 className='flex text-ellipsis text-sm'>
+                        {category.company}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </Category>
         <Category
           title='Rejected'
           backgroundColor='bg-red-500/80'
-          borderColor='border-red-400/50'
+          contentBorderColor='border-red-400/50'
+          contentHeadingColor='text-red-500'
           setCategoryOpen={setRejectedOpen}
           categoryOpen={rejectedOpen}
-          categoryContent={cards.filter((card) => card.category === 'Rejected')}
+          contentCount={cards.filter((card) => card.category === 'Rejected')}
         >
           {cards
             .filter((card) => card.category === 'Rejected')
-            .map((card) => (
-              <div className='flex flex-col justify-center items-center'>
-                {card.job}
+            .map((category) => (
+              <div
+                key={category.id}
+                className='bg-red-400/50 p-2 rounded-md bg-white'
+              >
+                <div className='grid space-y-1'>
+                  <div className='flex items-center gap-2'>
+                    <div className='bg-white p-1 rounded-lg'>
+                      <BriefcaseIcon className='h-4' />
+                    </div>
+                    <h1 className='flex font-semibold text-ellipsis'>
+                      {category.job}
+                    </h1>
+                  </div>
+                  <div className='flex '>
+                    <div className='flex items-center gap-2'>
+                      <div className='bg-white p-1 rounded-lg'>
+                        <OfficeBuildingIcon className='h-4' />
+                      </div>
+                      <h2 className='flex text-ellipsis text-sm'>
+                        {category.company}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
         </Category>
       </div>
-
-      {/* plan post button */}
-      {!modal && (
-        <div className='flex justify-end pr-10'>
-          <div className='fixed bottom-14 z-30 pt-36 lg:pb-10 lg:bottom-0 items-center px-6 py-4'>
-            <button
-              type='submit'
-              className='relative inline-flex flex-initial items-center justify-center rounded-3xl bg-gradient-to-r from-gradient1 to-gradient2 px-4 py-3 font-bold leading-6 text-white shadow-md'
-              onClick={() => handleOpenModal()}
-            >
-              <PlusSmIcon className='h-6 w-6' />
-              Add
-            </button>
-          </div>
-        </div>
-      )}
     </main>
   );
 };

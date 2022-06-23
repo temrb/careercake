@@ -4,7 +4,7 @@ import TrackBoard from './track-board/track-board.component';
 
 const Track = () => {
   return (
-    <div className=' lg:h-[calc(100vh_-_4rem)] h-[calc(100vh_-_8rem)] sticky'>
+    <div className='h-[calc(100vh_-_4rem)] sticky'>
       <Heading
         icon='📋'
         title='Track'
