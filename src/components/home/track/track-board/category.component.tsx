@@ -4,8 +4,11 @@ import { useAppDispatch } from '../../../../hooks/useRedux';
 import { setModal } from '../../../../redux/features/utilsSlice';
 import { setCategoryInput } from '../../../../redux/features/trackSlice';
 import { OfficeBuildingIcon, BriefcaseIcon } from '@heroicons/react/solid';
+import { motion } from 'framer-motion';
+
 interface Props {
   title: string;
+  subtitle: string;
   backgroundColor: string;
   contentBorderColor: string;
   contentHeadingColor: string;
@@ -16,18 +19,22 @@ interface Props {
 }
 
 const Category = (Props: Props) => {
+  console.log(Props.cards);
+
   const handleOpenModal = () => {
     useAppDispatch(setModal(true));
     useAppDispatch(setCategoryInput(Props.title));
   };
   return (
     <div>
+      {/* CATEGORY OPEN/CLOSE */}
       <button
         className={`flex justify-between font-semibold py-3 ${Props.backgroundColor} shadow-md px-3 items-center rounded-lg w-full`}
         onClick={() => Props.setCategoryOpen(!Props.categoryOpen)}
       >
         <span className='flex justify-start text-white items-center'>
           {Props.title}
+          <span className='pl-1'>{Props.subtitle}</span>
         </span>
         <span className='flex justify-end items-center gap-2'>
           <span className='h-7 w-7 bg-white shadow-md rounded-full cursor-pointer'>
@@ -36,9 +43,13 @@ const Category = (Props: Props) => {
         </span>
       </button>
       {Props.categoryOpen && (
-        <div
+        <motion.div
           className={`mt-4 grid space-y-4 ${Props.contentBorderColor} border-4 rounded-lg border-dashed p-2`}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
         >
+          {/* CARD HEADING */}
           <div className='grid grid-cols-2 items-center'>
             <div
               className={`font-semibold flex justify-start text-xs mx-auto ${Props.contentHeadingColor} p-3 rounded-lg border-b-2  ${Props.contentBorderColor}`}
@@ -72,15 +83,15 @@ const Category = (Props: Props) => {
               >
                 <div className='grid space-y-1 capitalize'>
                   <div className='flex items-center gap-2 truncate '>
-                    <div className='bg-white p-1 rounded-lg'>
-                      <BriefcaseIcon className='h-4' />
+                    <div className='bg-white p-1 rounded-lg '>
+                      <BriefcaseIcon className={`h-4 ${Props.contentHeadingColor}`} />
                     </div>
                     <h1 className='flex font-semibold '>{category.job}</h1>
                   </div>
                   <div className='flex truncate'>
                     <div className='flex items-center gap-2'>
-                      <div className='bg-white p-1 rounded-lg'>
-                        <OfficeBuildingIcon className='h-4' />
+                      <div className='bg-white p-1 rounded-lg '>
+                        <OfficeBuildingIcon className={`h-4 ${Props.contentHeadingColor}`} />
                       </div>
                       <h2 className='flex text-ellipsis text-sm'>
                         {category.company}
@@ -90,7 +101,7 @@ const Category = (Props: Props) => {
                 </div>
               </div>
             ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

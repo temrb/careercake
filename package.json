@@ -18,7 +18,7 @@
     "@types/react-redux": "^7.1.24",
     "aws-amplify": "^4.3.26",
     "dayjs": "^1.11.3",
-    "framer-motion": "^6.3.11",
+    "framer-motion": "^6.3.13",
     "next": "latest",
     "nextjs-progressbar": "^0.0.14",
     "react": "^17.0.2",
