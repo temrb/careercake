@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <div className='relative mx-auto max-w-screen lg:pl-40'>
-      <div className='grid-col-1 grid '>
+      <div className='grid-col-1 grid'>
         {/* build */}
         <div
           className={`${build ? '' : 'hidden'} overflow-auto `}
