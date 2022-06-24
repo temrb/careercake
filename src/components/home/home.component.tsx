@@ -16,7 +16,7 @@ const Home = () => {
   const account = useAppSelector((state: RootState) => state.menu.openAccount);
 
   return (
-    <div className='relative mx-auto max-w-screen lg:pl-40'>
+    <div className='relative mx-auto max-w-screen'>
       <div className='grid-col-1 grid'>
         {/* build */}
         <div

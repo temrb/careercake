@@ -55,13 +55,13 @@ const MenuButtons = () => {
   };
 
   return (
-    <div className='fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 h-16 lg:left-0 lg:inset-y-0 lg:grid-cols-1 lg:w-40 lg:top-16'>
+    <div className='fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 h-16 lg:hidden'>
       <button
         className={` flex ${
           build
             ? 'bg-accent2 text-white '
             : 'bg-white text-gray-400 ring-accent2 transition duration-300 ease-in-out hover:text-accent2 hover:ring-4 hover:ring-inset'
-        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold lg:rounded-tr-lg lg:rounded-br-lg`}
+        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold`}
         onClick={handleBuild}
       >
         <span className='h-5 w-5 lg:inline-flex hidden'>
@@ -74,7 +74,7 @@ const MenuButtons = () => {
           track
             ? 'bg-accent2 text-white'
             : 'bg-white text-gray-400 ring-accent2 transition duration-300 ease-in-out hover:text-accent2 hover:ring-4 hover:ring-inset'
-        } items-center justify-center gap-1 py-5 text-lg font-semibold lg:rounded-tr-lg lg:rounded-br-lg `}
+        } items-center justify-center gap-1 py-5 text-lg font-semibold`}
         onClick={handleTrack}
       >
         <span className='h-5 w-5 lg:inline-flex hidden'>
@@ -87,7 +87,7 @@ const MenuButtons = () => {
           search
             ? 'bg-accent2 text-white'
             : 'bg-white text-gray-400 ring-accent2 transition duration-300 ease-in-out hover:text-accent2 hover:ring-4 hover:ring-inset'
-        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold lg:rounded-tr-lg lg:rounded-br-lg `}
+        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold`}
         onClick={handleSearch}
       >
         <span className='h-5 w-5 lg:inline-flex hidden'>
@@ -100,7 +100,7 @@ const MenuButtons = () => {
           account
             ? 'bg-accent2 text-white'
             : 'bg-white text-gray-400 ring-accent2 transition duration-300 ease-in-out hover:text-accent2 hover:ring-4 hover:ring-inset'
-        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold lg:rounded-tr-lg lg:rounded-br-lg `}
+        } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold`}
         onClick={handleAccount}
       >
         <span className='h-5 w-5 lg:inline-flex hidden'>
