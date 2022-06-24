@@ -114,12 +114,6 @@ const Header = () => {
           Account
         </button>
       </div>
-      <button
-        className='lg:flex hidden justify-end w-full'
-        onClick={() => Auth.signOut()}
-      >
-        Log Out
-      </button>
     </header>
   );
 };

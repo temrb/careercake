@@ -3,7 +3,12 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid';
 import { useAppDispatch } from '../../../../hooks/useRedux';
 import { setModal } from '../../../../redux/features/utilsSlice';
 import { setCategoryInput } from '../../../../redux/features/trackSlice';
-import { OfficeBuildingIcon, BriefcaseIcon } from '@heroicons/react/solid';
+import {
+  OfficeBuildingIcon,
+  BriefcaseIcon,
+  TrashIcon,
+  PencilIcon,
+} from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
 
 interface Props {
@@ -17,6 +22,13 @@ interface Props {
   cards: any;
   cardColor: string;
 }
+
+const handleEdit = () => {
+  console.log('edit');
+};
+const handleDelete = () => {
+  console.log('delete');
+};
 
 const Category = (Props: Props) => {
   console.log(Props.cards);
@@ -80,26 +92,36 @@ const Category = (Props: Props) => {
                 key={category.id}
                 className={`${Props.cardColor} p-2 rounded-md bg-white`}
               >
-                <div className='grid space-y-1 capitalize'>
-                  <div className='flex items-center gap-2 truncate '>
-                    <div className='bg-white p-1 rounded-lg '>
-                      <BriefcaseIcon
+                <div className='flex justify-between capitalize mx-auto '>
+                  <div className='grid space-y-1'>
+                    <div className='flex items-center gap-2 truncate '>
+                      <h1 className='flex font-semibold '>{category.job}</h1>
+                    </div>
+                    <div className='flex truncate'>
+                      <div className='flex items-center gap-2'>
+                        <h2 className='flex text-ellipsis text-sm'>
+                          {category.company}
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='grid space-y-1 items-center justify-end'>
+                    <button
+                      className='justify-end bg-white p-1 rounded-lg'
+                      onClick={() => handleEdit()}
+                    >
+                      <PencilIcon
                         className={`h-4 ${Props.contentHeadingColor}`}
                       />
-                    </div>
-                    <h1 className='flex font-semibold '>{category.job}</h1>
-                  </div>
-                  <div className='flex truncate'>
-                    <div className='flex items-center gap-2'>
-                      <div className='bg-white p-1 rounded-lg '>
-                        <OfficeBuildingIcon
-                          className={`h-4 ${Props.contentHeadingColor}`}
-                        />
-                      </div>
-                      <h2 className='flex text-ellipsis text-sm'>
-                        {category.company}
-                      </h2>
-                    </div>
+                    </button>
+                    <button
+                      className='justify-end bg-white p-1 rounded-lg'
+                      onClick={() => handleDelete()}
+                    >
+                      <TrashIcon
+                        className={`h-4 ${Props.contentHeadingColor}`}
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
