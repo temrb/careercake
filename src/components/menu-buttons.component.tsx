@@ -12,7 +12,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import {
   setOpenTrack,
-  setOpenBuild,
+  setOpenResume,
   setOpenSearch,
   setOpenAccount,
 } from '../redux/features/menuSlice';
@@ -22,13 +22,13 @@ interface RootState {
 }
 
 const MenuButtons = () => {
-  const build = useAppSelector((state: RootState) => state.menu.openBuild);
+  const resume = useAppSelector((state: RootState) => state.menu.openResume);
   const track = useAppSelector((state: RootState) => state.menu.openTrack);
   const search = useAppSelector((state: RootState) => state.menu.openSearch);
   const account = useAppSelector((state: RootState) => state.menu.openAccount);
 
-  const handleBuild = () => {
-    useAppDispatch(setOpenBuild(true));
+  const handleResume = () => {
+    useAppDispatch(setOpenResume(true));
     useAppDispatch(setOpenTrack(false));
     useAppDispatch(setOpenSearch(false));
     useAppDispatch(setOpenAccount(false));
@@ -37,7 +37,7 @@ const MenuButtons = () => {
   const handleTrack = () => {
     useAppDispatch(setOpenTrack(true));
     useAppDispatch(setOpenSearch(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
     useAppDispatch(setOpenAccount(false));
   };
 
@@ -45,29 +45,29 @@ const MenuButtons = () => {
     useAppDispatch(setOpenSearch(true));
     useAppDispatch(setOpenAccount(false));
     useAppDispatch(setOpenTrack(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
   };
   const handleAccount = () => {
     useAppDispatch(setOpenAccount(true));
     useAppDispatch(setOpenSearch(false));
     useAppDispatch(setOpenTrack(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
   };
 
   return (
     <div className='fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 h-16 lg:hidden'>
       <button
         className={` flex ${
-          build
+          resume
             ? 'bg-accent2 text-white '
             : 'bg-white text-gray-400 ring-accent2 transition duration-300 ease-in-out hover:text-accent2 hover:ring-4 hover:ring-inset'
         } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold`}
-        onClick={handleBuild}
+        onClick={handleResume}
       >
         <span className='h-5 w-5 lg:inline-flex hidden'>
-          {build ? <PencilAltIcon /> : <PencilIcon />}
+          {resume ? <PencilAltIcon /> : <PencilIcon />}
         </span>
-        Build
+        Resume
       </button>
       <button
         className={` focus:z-2 flex ${

@@ -1,16 +1,16 @@
 import React from 'react';
-import { useAppSelector } from '../../hooks/useRedux';
-import Build from './build/build.component';
+import Resume from './resume/resume.component';
 import Track from './track/track.component';
 import Search from './search/search.component';
 import Account from './account/account.component';
+import { useAppSelector } from '../../hooks/useRedux';
 
 interface RootState {
   menu: any;
 }
 
 const Home = () => {
-  const build = useAppSelector((state: RootState) => state.menu.openBuild);
+  const resume = useAppSelector((state: RootState) => state.menu.openResume);
   const track = useAppSelector((state: RootState) => state.menu.openTrack);
   const search = useAppSelector((state: RootState) => state.menu.openSearch);
   const account = useAppSelector((state: RootState) => state.menu.openAccount);
@@ -18,12 +18,12 @@ const Home = () => {
   return (
     <div className='relative mx-auto max-w-screen'>
       <div className='grid-col-1 grid'>
-        {/* build */}
+        {/* resume */}
         <div
-          className={`${build ? '' : 'hidden'} overflow-auto `}
+          className={`${resume ? '' : 'hidden'} overflow-auto `}
           id='drawerSection'
         >
-          <Build />
+          <Resume />
         </div>
         {/* track */}
         <div className={`${track ? '' : 'hidden'} overflow-auto `}>

@@ -40,18 +40,15 @@ const Category = (Props: Props) => {
     useAppDispatch(setEditModal(false));
     setCategoryCardId('');
   };
-
   const handleOpenModal = () => {
     useAppDispatch(setAddModal(true));
     useAppDispatch(setCategoryInput(Props.title));
   };
-
   const handleEdit = (categoryId: any) => {
     useAppDispatch(setEditModal(true));
     setCategoryCardId(categoryId);
     console.log(categoryId);
   };
-
   const handleDelete = async (categoryId: String) => {
     console.log(categoryId);
     try {

@@ -4,14 +4,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 const menuSlice = createSlice({
   name: 'menu',
   initialState: {
-    openBuild: false,
+    openResume: false,
     openTrack: true,
     openSearch: false,
     openAccount: false,
   },
   reducers: {
-    setOpenBuild: (state: any, action: PayloadAction<Boolean>) => {
-      state.openBuild = action.payload;
+    setOpenResume: (state: any, action: PayloadAction<Boolean>) => {
+      state.openResume = action.payload;
     },
     setOpenTrack: (state: any, action: PayloadAction<Boolean>) => {
       state.openTrack = action.payload;
@@ -26,7 +26,7 @@ const menuSlice = createSlice({
 });
 
 export const {
-  setOpenBuild: setOpenBuild,
+  setOpenResume: setOpenResume,
   setOpenTrack: setOpenTrack,
   setOpenSearch: setOpenSearch,
   setOpenAccount: setOpenAccount,

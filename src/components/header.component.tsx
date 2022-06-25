@@ -3,7 +3,7 @@ import { Auth } from 'aws-amplify';
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import {
   setOpenTrack,
-  setOpenBuild,
+  setOpenResume,
   setOpenSearch,
   setOpenAccount,
 } from '../redux/features/menuSlice';
@@ -23,13 +23,13 @@ interface RootState {
 }
 
 const Header = () => {
-  const build = useAppSelector((state: RootState) => state.menu.openBuild);
+  const resume = useAppSelector((state: RootState) => state.menu.openResume);
   const track = useAppSelector((state: RootState) => state.menu.openTrack);
   const search = useAppSelector((state: RootState) => state.menu.openSearch);
   const account = useAppSelector((state: RootState) => state.menu.openAccount);
 
-  const handleBuild = () => {
-    useAppDispatch(setOpenBuild(true));
+  const handleResume = () => {
+    useAppDispatch(setOpenResume(true));
     useAppDispatch(setOpenTrack(false));
     useAppDispatch(setOpenSearch(false));
     useAppDispatch(setOpenAccount(false));
@@ -38,7 +38,7 @@ const Header = () => {
   const handleTrack = () => {
     useAppDispatch(setOpenTrack(true));
     useAppDispatch(setOpenSearch(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
     useAppDispatch(setOpenAccount(false));
   };
 
@@ -46,13 +46,13 @@ const Header = () => {
     useAppDispatch(setOpenSearch(true));
     useAppDispatch(setOpenAccount(false));
     useAppDispatch(setOpenTrack(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
   };
   const handleAccount = () => {
     useAppDispatch(setOpenAccount(true));
     useAppDispatch(setOpenSearch(false));
     useAppDispatch(setOpenTrack(false));
-    useAppDispatch(setOpenBuild(false));
+    useAppDispatch(setOpenResume(false));
   };
 
   return (
@@ -63,16 +63,16 @@ const Header = () => {
       <div className='lg:flex lg:gap-2 hidden'>
         <button
           className={` flex ${
-            build
+            resume
               ? 'text-accent2 '
               : 'bg-white text-gray-400 transition duration-300 ease-in-out hover:text-accent2'
           } items-center justify-center gap-1 px-2 py-5 text-lg font-semibold`}
-          onClick={handleBuild}
+          onClick={handleResume}
         >
           <span className='h-5 w-5 lg:inline-flex hidden'>
-            {build ? <PencilAltIcon /> : <PencilIcon />}
+            {resume ? <PencilAltIcon /> : <PencilIcon />}
           </span>
-          Build
+          Resume
         </button>
         <button
           className={` flex ${
