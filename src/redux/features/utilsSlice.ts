@@ -5,17 +5,22 @@ const utilsSlice = createSlice({
   name: 'utils',
   initialState: {
     backdrop: false,
-    modal: false,
+    addModal: false,
+    editModal: false,
   },
   reducers: {
     setBackdrop: (state: any, action: PayloadAction<Boolean>) => {
       state.backdrop = action.payload;
     },
-    setModal: (state: any, action: PayloadAction<Boolean>) => {
-      state.modal = action.payload;
+    setAddModal: (state: any, action: PayloadAction<Boolean>) => {
+      state.addModal = action.payload;
+    },
+    setEditModal: (state: any, action: PayloadAction<Boolean>) => {
+      state.editModal = action.payload;
     },
   },
 });
 
-export const { setBackdrop, setModal } = utilsSlice.actions;
+export const { setBackdrop, setAddModal, setEditModal } =
+  utilsSlice.actions;
 export default utilsSlice.reducer;

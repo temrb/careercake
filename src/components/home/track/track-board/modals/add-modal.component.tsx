@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
-import { setModal } from '../../../../redux/features/utilsSlice';
-import { setCategoryInput } from '../../../../redux/features/trackSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/useRedux';
+import { setAddModal } from '../../../../../redux/features/utilsSlice';
+import { setCategoryInput } from '../../../../../redux/features/trackSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   TextField,
@@ -17,8 +17,8 @@ import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { API } from 'aws-amplify';
-import { createCard } from '../../../../graphql/mutations';
-import { CreateCardInput, CreateCardMutation } from '../../../../API';
+import { createCard } from '../../../../../graphql/mutations';
+import { CreateCardInput, CreateCardMutation } from '../../../../../API';
 // import { useRouter } from 'next/router';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 
@@ -44,7 +44,7 @@ const style = {
   p: 3,
 };
 
-const BoardModal = () => {
+const AddModal = () => {
   const categoryInput = useAppSelector(
     (state: RootState) => state.track.categoryInput
   );
@@ -62,7 +62,7 @@ const BoardModal = () => {
     formState: { errors },
   } = useForm<IFormInput>();
 
-  const handleCloseModal = () => useAppDispatch(setModal(false));
+  const handleCloseModal = () => useAppDispatch(setAddModal(false));
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setLoading(true);
@@ -200,4 +200,4 @@ const BoardModal = () => {
   );
 };
 
-export default BoardModal;
+export default AddModal;

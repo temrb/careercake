@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
-import { setModal } from '../../../../redux/features/utilsSlice';
-import BoardModal from './board-modal.component';
+import { setAddModal } from '../../../../redux/features/utilsSlice';
+import AddModal from './modals/add-modal.component';
 import Category from './category.component';
 import { API } from 'aws-amplify';
 import { listCards } from '../../../../graphql/queries';
@@ -14,14 +14,15 @@ interface RootState {
 }
 
 const TrackBoard = () => {
-  const modal = useAppSelector((state: RootState) => state.utils.modal);
-  const handleCloseModal = () => useAppDispatch(setModal(false));
+  const addModal = useAppSelector((state: RootState) => state.utils.addModal);
+  const handleCloseAddModal = () => useAppDispatch(setAddModal(false));
   const [appliedOpen, setAppliedOpen] = useState(false);
   const [interviewOpen, setInterviewOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
   const [rejectedOpen, setRejectedOpen] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
+  console.log("🚀 ~ file: track-board.component.tsx ~ line 25 ~ TrackBoard ~ cards", cards)
 
   useEffect(() => {
     const fetchCardsFromApi = async (): Promise<Card[]> => {
@@ -47,8 +48,8 @@ const TrackBoard = () => {
   return (
     <main className='pb-6'>
       {/* modal */}
-      <Modal open={modal} onClose={handleCloseModal}>
-        <>{<BoardModal />}</>
+      <Modal open={addModal} onClose={handleCloseAddModal}>
+        <>{<AddModal />}</>
       </Modal>
 
       {/* category board */}

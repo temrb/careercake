@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid';
-import { useAppDispatch } from '../../../../hooks/useRedux';
-import { setModal } from '../../../../redux/features/utilsSlice';
-import { setCategoryInput } from '../../../../redux/features/trackSlice';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
 import {
-  OfficeBuildingIcon,
-  BriefcaseIcon,
-  TrashIcon,
-  PencilIcon,
-} from '@heroicons/react/solid';
+  setAddModal,
+  setEditModal,
+} from '../../../../redux/features/utilsSlice';
+import { setCategoryInput } from '../../../../redux/features/trackSlice';
+import { TrashIcon, PencilIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
+import Modal from '@mui/material/Modal';
+import EditModal from './modals/edit-modal.component';
+import { API } from 'aws-amplify';
+import { deleteCard } from '../../../../graphql/mutations';
+import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+
+interface RootState {
+  utils: any;
+  track: any;
+}
 
 interface Props {
   title: string;
@@ -23,21 +31,51 @@ interface Props {
   cardColor: string;
 }
 
-const handleEdit = () => {
-  console.log('edit');
-};
-const handleDelete = () => {
-  console.log('delete');
-};
-
 const Category = (Props: Props) => {
-  console.log(Props.cards);
+  const [categoryCardId, setCategoryCardId] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const addModal = useAppSelector((state: RootState) => state.utils.editModal);
+  const handleCloseEditModal = () => {
+    useAppDispatch(setEditModal(false));
+    setCategoryCardId('');
+  };
+
   const handleOpenModal = () => {
-    useAppDispatch(setModal(true));
+    useAppDispatch(setAddModal(true));
     useAppDispatch(setCategoryInput(Props.title));
+  };
+
+  const handleEdit = (categoryId: any) => {
+    useAppDispatch(setEditModal(true));
+    setCategoryCardId(categoryId);
+    console.log(categoryId);
+  };
+
+  const handleDelete = async (categoryId: String) => {
+    console.log(categoryId);
+    try {
+      await API.graphql({
+        query: deleteCard,
+        variables: {
+          input: {
+            id: categoryId,
+          },
+        },
+        authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+      });
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
   };
   return (
     <div>
+      {/* Edit Modal */}
+      <Modal open={addModal} onClose={handleCloseEditModal}>
+        <>{<EditModal categoryId={categoryCardId} />}</>
+      </Modal>
+
       {/* CATEGORY OPEN/CLOSE */}
       <button
         className={`flex justify-between font-semibold py-3 ${Props.backgroundColor} shadow-md px-3 items-center rounded-lg w-full`}
@@ -100,6 +138,7 @@ const Category = (Props: Props) => {
                     <div className='flex truncate'>
                       <div className='flex items-center gap-2'>
                         <h2 className='flex text-ellipsis text-sm'>
+                          {/* {category.id} */}
                           {category.company}
                         </h2>
                       </div>
@@ -108,7 +147,7 @@ const Category = (Props: Props) => {
                   <div className='grid space-y-1 items-center justify-end'>
                     <button
                       className='justify-end bg-white p-1 rounded-lg'
-                      onClick={() => handleEdit()}
+                      onClick={() => handleEdit(category.id)}
                     >
                       <PencilIcon
                         className={`h-4 ${Props.contentHeadingColor}`}
@@ -116,7 +155,7 @@ const Category = (Props: Props) => {
                     </button>
                     <button
                       className='justify-end bg-white p-1 rounded-lg'
-                      onClick={() => handleDelete()}
+                      onClick={() => handleDelete(category.id)}
                     >
                       <TrashIcon
                         className={`h-4 ${Props.contentHeadingColor}`}

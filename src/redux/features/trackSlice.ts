@@ -10,6 +10,9 @@ const trackSlice = createSlice({
     setCategoryInput: (state: any, action: PayloadAction<string>) => {
       state.categoryInput = action.payload;
     },
+    // setCategoryId: (state: any, action: any) => {
+    //   state.categoryId = action.payload;
+    // },
   },
 });
 
