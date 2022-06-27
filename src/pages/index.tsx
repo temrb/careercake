@@ -5,9 +5,18 @@ import Home from '../components/home/home.component';
 import MenuButtons from '../components/menu-buttons.component';
 import Header from '../components/header.component';
 import { useSession } from '../context/AuthContext';
+import SignUpAuth from '../components/auth/sign-up/signupauth.component';
+import SignInAuth from '../components/auth/sign-in/signinauth.component';
+import { useAppSelector } from '../hooks/useRedux';
+
+interface RootState {
+  auth: any;
+}
 
 const Index: NextPage = () => {
   const { user } = useSession();
+
+  const signUp = useAppSelector((state: RootState) => state.auth.signUp);
 
   return (
     <div className='min-h-screen'>
@@ -16,14 +25,21 @@ const Index: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {/* header */}
-      <Header />
+      {user ? (
+        <>
+          {/* header */}
+          <Header />
 
-      {/* menu buttons */}
-      <MenuButtons />
-
-      {/* home component */}
-      <Home />
+          {/* menu buttons */}
+          <MenuButtons />
+          {/* home component */}
+          <Home />
+        </>
+      ) : signUp ? (
+        <SignUpAuth />
+      ) : (
+        <SignInAuth />
+      )}
     </div>
   );
 };

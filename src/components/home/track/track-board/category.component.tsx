@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
-import {
-  setAddModal,
-  setEditModal,
-} from '../../../../redux/features/utilsSlice';
+import { setAddModal } from '../../../../redux/features/utilsSlice';
 import { setCategoryInput } from '../../../../redux/features/trackSlice';
 import { TrashIcon, PencilIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
-import Modal from '@mui/material/Modal';
-import EditModal from './modals/edit-modal.component';
 import { API } from 'aws-amplify';
 import { deleteCard } from '../../../../graphql/mutations';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { useRouter } from 'next/router';
+import { useSession } from '../../../../context/AuthContext';
+import { DeleteCardMutation } from '../../../../API';
 
 interface RootState {
   utils: any;
@@ -32,27 +30,22 @@ interface Props {
 }
 
 const Category = (Props: Props) => {
-  const [categoryCardId, setCategoryCardId] = useState('');
+  const router = useRouter();
+  const { user } = useSession();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const addModal = useAppSelector((state: RootState) => state.utils.editModal);
-  const handleCloseEditModal = () => {
-    useAppDispatch(setEditModal(false));
-    setCategoryCardId('');
-  };
   const handleOpenModal = () => {
     useAppDispatch(setAddModal(true));
     useAppDispatch(setCategoryInput(Props.title));
   };
   const handleEdit = (categoryId: any) => {
-    useAppDispatch(setEditModal(true));
-    setCategoryCardId(categoryId);
-    console.log(categoryId);
+    router.push(`/card/${categoryId}`);
   };
   const handleDelete = async (categoryId: String) => {
     console.log(categoryId);
     try {
-      await API.graphql({
+      setLoading(true);
+      const deleteThisCard = (await API.graphql({
         query: deleteCard,
         variables: {
           input: {
@@ -60,7 +53,7 @@ const Category = (Props: Props) => {
           },
         },
         authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
-      });
+      })) as { data: DeleteCardMutation };
     } catch (err) {
       console.log(err);
       setError(true);
@@ -68,11 +61,6 @@ const Category = (Props: Props) => {
   };
   return (
     <div>
-      {/* Edit Modal */}
-      <Modal open={addModal} onClose={handleCloseEditModal}>
-        <>{<EditModal categoryId={categoryCardId} />}</>
-      </Modal>
-
       {/* CATEGORY OPEN/CLOSE */}
       <button
         className={`flex justify-between font-semibold py-3 ${Props.backgroundColor} shadow-md px-3 items-center rounded-lg w-full`}

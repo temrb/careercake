@@ -7,10 +7,10 @@ import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 import Head from 'next/head';
 import { Amplify } from 'aws-amplify';
+import awsconfig from '../aws-exports';
 import AuthContext from '../context/AuthContext';
-import config from '../aws-exports';
 
-Amplify.configure({ ...config, ssr: true });
+Amplify.configure({ ...awsconfig, ssr: true });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

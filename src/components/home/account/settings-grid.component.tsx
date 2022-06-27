@@ -9,9 +9,7 @@ const SettingsGrid = (Props: Props) => {
   return (
     <button
       className='text-slate-600 flex mx-auto justify-center py-2 px-3 font-bold text-xl'
-      onClick={() => {
-        Props.onClick;
-      }}
+      onClick={Props.onClick}
     >
       {Props.children}
     </button>

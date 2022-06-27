@@ -13,6 +13,8 @@ import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from '@aws-amplify/auth';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types';
+import { setSignUp } from '../../../redux/features/authSlice';
+import { useAppDispatch } from '../../../hooks/useRedux';
 
 interface IFormInput {
   name: string;
@@ -238,9 +240,12 @@ const SignUpForm = () => {
                   </button>
                 </div>
               </div>
-              <div className='text-l mx-auto mt-6 cursor-pointer text-center font-semibold text-gray-500 transition duration-300 ease-in-out hover:text-gray-700'>
-                <Link href='/signin'>Sign In Instead</Link>
-              </div>
+              <button
+                className='text-l mx-auto mt-6 cursor-pointer flex justify-center font-semibold text-gray-500 transition duration-300 ease-in-out hover:text-gray-700'
+                onClick={() => useAppDispatch(setSignUp(false))}
+              >
+                Sign In Instead
+              </button>
             </>
           )}
         </div>

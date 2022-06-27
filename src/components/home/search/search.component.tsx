@@ -1,5 +1,6 @@
 import React from 'react';
 import Heading from '../../heading.component';
+import JobSearch from './job-search/job-search.component';
 
 const Search = () => {
   return (
@@ -9,7 +10,7 @@ const Search = () => {
         title='Search'
         description='Search and apply for jobs.'
       />
-      <div></div>
+      <JobSearch />
     </div>
   );
 };
