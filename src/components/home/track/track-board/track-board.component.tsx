@@ -8,6 +8,7 @@ import { API } from 'aws-amplify';
 import { listCards } from '../../../../graphql/queries';
 import { Card, ListCardsQuery } from '../../../../API';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 interface RootState {
   utils: any;
@@ -22,7 +23,10 @@ const TrackBoard = () => {
   const [offerOpen, setOfferOpen] = useState(false);
   const [rejectedOpen, setRejectedOpen] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
-  console.log("🚀 ~ file: track-board.component.tsx ~ line 25 ~ TrackBoard ~ cards", cards)
+  console.log(
+    '🚀 ~ file: track-board.component.tsx ~ line 25 ~ TrackBoard ~ cards',
+    cards
+  );
 
   useEffect(() => {
     const fetchCardsFromApi = async (): Promise<Card[]> => {
@@ -45,6 +49,10 @@ const TrackBoard = () => {
   }, []);
   console.log('cards', cards);
 
+  const onDragEnd = () => {
+    console.log('dragging here');
+  };
+
   return (
     <main className='pb-6'>
       {/* modal */}
@@ -53,63 +61,65 @@ const TrackBoard = () => {
       </Modal>
 
       {/* category board */}
-      <div className='pt-6 px-6 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 overflow-auto'>
-        <Category
-          title='Wishlist'
-          subtitle='🤍'
-          backgroundColor='bg-gray-400'
-          contentBorderColor='border-gray-400/50'
-          contentHeadingColor='text-gray-500'
-          setCategoryOpen={setWishlistOpen}
-          categoryOpen={wishlistOpen}
-          cards={cards.filter((card) => card.category === 'Wishlist')}
-          cardColor='bg-gray-400/50'
-        />
-        <Category
-          title='Applied'
-          subtitle='📝'
-          backgroundColor='bg-orange-500/80'
-          contentBorderColor='border-orange-400/50'
-          contentHeadingColor='text-orange-500'
-          setCategoryOpen={setAppliedOpen}
-          categoryOpen={appliedOpen}
-          cards={cards.filter((card) => card.category === 'Applied')}
-          cardColor='bg-orange-400/50'
-        />
-        <Category
-          title='Interview'
-          subtitle='💬'
-          backgroundColor='bg-blue-500/80'
-          contentBorderColor='border-blue-400/50'
-          contentHeadingColor='text-blue-500'
-          setCategoryOpen={setInterviewOpen}
-          categoryOpen={interviewOpen}
-          cards={cards.filter((card) => card.category === 'Interview')}
-          cardColor='bg-blue-400/50'
-        />
-        <Category
-          title='Offer'
-          subtitle='🤑'
-          backgroundColor='bg-green-500/80'
-          contentBorderColor='border-green-400/50'
-          contentHeadingColor='text-green-500'
-          setCategoryOpen={setOfferOpen}
-          categoryOpen={offerOpen}
-          cards={cards.filter((card) => card.category === 'Offer')}
-          cardColor='bg-green-400/50'
-        />
-        <Category
-          title='Rejected'
-          subtitle='🚫'
-          backgroundColor='bg-red-500/80'
-          contentBorderColor='border-red-400/50'
-          contentHeadingColor='text-red-500'
-          setCategoryOpen={setRejectedOpen}
-          categoryOpen={rejectedOpen}
-          cards={cards.filter((card) => card.category === 'Rejected')}
-          cardColor='bg-red-400/50'
-        />
-      </div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className='pt-6 px-6 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 overflow-auto'>
+          <Category
+            title='Wishlist'
+            subtitle='🤍'
+            backgroundColor='bg-gray-400'
+            contentBorderColor='border-gray-400/50'
+            contentHeadingColor='text-gray-500'
+            setCategoryOpen={setWishlistOpen}
+            categoryOpen={wishlistOpen}
+            cards={cards.filter((card) => card.category === 'Wishlist')}
+            cardColor='bg-gray-400/50'
+          />
+          <Category
+            title='Applied'
+            subtitle='📝'
+            backgroundColor='bg-orange-500/80'
+            contentBorderColor='border-orange-400/50'
+            contentHeadingColor='text-orange-500'
+            setCategoryOpen={setAppliedOpen}
+            categoryOpen={appliedOpen}
+            cards={cards.filter((card) => card.category === 'Applied')}
+            cardColor='bg-orange-400/50'
+          />
+          <Category
+            title='Interview'
+            subtitle='💬'
+            backgroundColor='bg-blue-500/80'
+            contentBorderColor='border-blue-400/50'
+            contentHeadingColor='text-blue-500'
+            setCategoryOpen={setInterviewOpen}
+            categoryOpen={interviewOpen}
+            cards={cards.filter((card) => card.category === 'Interview')}
+            cardColor='bg-blue-400/50'
+          />
+          <Category
+            title='Offer'
+            subtitle='🤑'
+            backgroundColor='bg-green-500/80'
+            contentBorderColor='border-green-400/50'
+            contentHeadingColor='text-green-500'
+            setCategoryOpen={setOfferOpen}
+            categoryOpen={offerOpen}
+            cards={cards.filter((card) => card.category === 'Offer')}
+            cardColor='bg-green-400/50'
+          />
+          <Category
+            title='Rejected'
+            subtitle='🚫'
+            backgroundColor='bg-red-500/80'
+            contentBorderColor='border-red-400/50'
+            contentHeadingColor='text-red-500'
+            setCategoryOpen={setRejectedOpen}
+            categoryOpen={rejectedOpen}
+            cards={cards.filter((card) => card.category === 'Rejected')}
+            cardColor='bg-red-400/50'
+          />
+        </div>
+      </DragDropContext>
     </main>
   );
 };

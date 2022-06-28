@@ -6,54 +6,53 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react'
-import { CognitoUser } from '@aws-amplify/auth'
-import { Auth, Hub } from 'aws-amplify'
+} from 'react';
+import { CognitoUser } from '@aws-amplify/auth';
+import { Auth, Hub } from 'aws-amplify';
 
 interface UserContextType {
-  user: CognitoUser | null
-  setUser: Dispatch<SetStateAction<CognitoUser | null>>
-  loading: boolean
+  user: CognitoUser | null;
+  setUser: Dispatch<SetStateAction<CognitoUser | null>>;
 }
 
-const UserContext = createContext<UserContextType>({} as UserContextType)
+const UserContext = createContext<UserContextType>({} as UserContextType);
 
 interface Props {
-  children: React.ReactElement
+  children: React.ReactElement;
 }
 
 export default function AuthContext({ children }: Props): ReactElement {
-  const [user, setUser] = useState<CognitoUser | null>(null)
-  const [loading, setLoading] = useState(false)
-  console.log('🚀 ~ file: AuthContext.tsx ~ line 27 ~ AuthContext ~ user', user)
+  const [user, setUser] = useState<CognitoUser | null>(null);
 
   useEffect(() => {
-    checkUser()
-  }, [])
+    checkUser();
+  }, []);
 
   useEffect(() => {
     Hub.listen('auth', () => {
       // perform some action to update state whenever an auth event is detected.
-      checkUser()
-    })
-  }, [])
+      checkUser();
+    });
+  }, []);
 
   async function checkUser() {
     try {
-      const amplifyUser = await Auth.currentAuthenticatedUser()
-      if (amplifyUser) setUser(amplifyUser)
+      const amplifyUser = await Auth.currentAuthenticatedUser();
+      if (amplifyUser) {
+        setUser(amplifyUser);
+      }
     } catch (error) {
       // No current signed in user.
-      setUser(null)
-      console.error(error)
+      console.error(error);
+      setUser(null);
     }
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, loading }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
-  )
+  );
 }
 
-export const useSession = (): UserContextType => useContext(UserContext)
+export const useSession = (): UserContextType => useContext(UserContext);

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Home from '../components/home/home.component';
 import MenuButtons from '../components/menu-buttons.component';

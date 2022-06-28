@@ -4,7 +4,7 @@ import { withSSRContext, API } from 'aws-amplify';
 import { listCards, getCard } from '../../graphql/queries';
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 import { Card, ListCardsQuery, GetCardQuery } from '../../API';
-import { useSession } from '../../context/AuthContext';
+
 
 interface Props {
   card: Card;

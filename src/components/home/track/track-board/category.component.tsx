@@ -11,6 +11,7 @@ import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 import { useRouter } from 'next/router';
 import { useSession } from '../../../../context/AuthContext';
 import { DeleteCardMutation } from '../../../../API';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 interface RootState {
   utils: any;
