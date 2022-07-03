@@ -6,13 +6,14 @@ interface Props {
   title?: string;
   description?: string;
   premium?: boolean;
+  children?: React.ReactNode;
 }
 
 interface RootState {
   user: any;
 }
 
-const Heading = ({ icon, title, description, premium }: Props) => {
+const Heading = ({ icon, title, description, premium, children }: Props) => {
   // const isSubscribed = useAppSelector(
   //   (state: RootState) => state?.user?.isSubscribed
   // )
@@ -20,7 +21,7 @@ const Heading = ({ icon, title, description, premium }: Props) => {
   const isSubscribed = false;
 
   return (
-    <div className=' z-10 flex items-center px-6 pb-6 pt-6 sticky top-0 bg-white shadow-lg lg:shadow-none'>
+    <div className=' z-10 flex justify-between items-center px-6 pb-6 pt-6 sticky top-0 bg-white shadow-lg lg:shadow-none'>
       <div className='flex flex-grow justify-start space-x-5'>
         <div className='item-center flex'>
           {/* icon */}
@@ -59,6 +60,7 @@ const Heading = ({ icon, title, description, premium }: Props) => {
           </div>
         </div>
       </div>
+      <div className='flex justify-end'>{children}</div>
     </div>
   );
 };

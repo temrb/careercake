@@ -6,7 +6,6 @@ const menuSlice = createSlice({
   initialState: {
     openResume: false,
     openTrack: true,
-    openSearch: false,
     openAccount: false,
   },
   reducers: {
@@ -15,9 +14,6 @@ const menuSlice = createSlice({
     },
     setOpenTrack: (state: any, action: PayloadAction<Boolean>) => {
       state.openTrack = action.payload;
-    },
-    setOpenSearch: (state: any, action: PayloadAction<Boolean>) => {
-      state.openSearch = action.payload;
     },
     setOpenAccount: (state: any, action: PayloadAction<Boolean>) => {
       state.openAccount = action.payload;
@@ -28,7 +24,6 @@ const menuSlice = createSlice({
 export const {
   setOpenResume: setOpenResume,
   setOpenTrack: setOpenTrack,
-  setOpenSearch: setOpenSearch,
   setOpenAccount: setOpenAccount,
 } = menuSlice.actions;
 export default menuSlice.reducer;

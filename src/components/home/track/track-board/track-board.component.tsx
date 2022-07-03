@@ -54,7 +54,7 @@ const TrackBoard = () => {
   };
 
   return (
-    <main className='pb-6'>
+    <main>
       {/* modal */}
       <Modal open={addModal} onClose={handleCloseAddModal}>
         <>{<AddModal />}</>
@@ -62,7 +62,7 @@ const TrackBoard = () => {
 
       {/* category board */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className='pt-6 px-6 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 overflow-auto'>
+        <div className='pt-6 pb-6 px-6 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 overflow-auto'>
           <Category
             title='Wishlist'
             subtitle='🤍'

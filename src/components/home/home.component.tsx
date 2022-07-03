@@ -1,7 +1,6 @@
 import React from 'react';
 import Resume from './resume/resume.component';
 import Track from './track/track.component';
-import Search from './search/search.component';
 import Account from './account/account.component';
 import { useAppSelector } from '../../hooks/useRedux';
 
@@ -12,7 +11,6 @@ interface RootState {
 const Home = () => {
   const resume = useAppSelector((state: RootState) => state.menu.openResume);
   const track = useAppSelector((state: RootState) => state.menu.openTrack);
-  const search = useAppSelector((state: RootState) => state.menu.openSearch);
   const account = useAppSelector((state: RootState) => state.menu.openAccount);
 
   return (
@@ -28,10 +26,6 @@ const Home = () => {
         {/* track */}
         <div className={`${track ? '' : 'hidden'} overflow-auto `}>
           <Track />
-        </div>
-        {/* search */}
-        <div className={`${search ? '' : 'hidden'} overflow-auto `}>
-          <Search />
         </div>
         {/* account */}
         <div className={`${account ? '' : 'hidden'} overflow-auto `}>

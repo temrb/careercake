@@ -1,5 +1,6 @@
 import React from 'react';
 import Heading from '../../heading.component';
+import ResumeAndCoverLetter from './resume-and-cover-letter/resume-and-cover-letter.component';
 
 const Resume = () => {
   return (
@@ -10,7 +11,7 @@ const Resume = () => {
         description='Build a resume and cover letter with the help of AI.'
         premium={true}
       />
-      <div></div>
+      <ResumeAndCoverLetter />
     </div>
   );
 };
